@@ -10,7 +10,7 @@ Add your screenshots to a folder named `screenshots/` in this repository, then u
 
 | Registration Form | Registration Success | Database Records |
 |---|---|---|
-| ![Registration Form](PHP_SS/Screenshot 2026-10-08 205836.png) | ![Registration Success](PHP_SS/Screenshot 2026-10-08 205813.png) | ![MariaDB Records](PHP_SS/Screenshot 2026-10-08 211213.png) |
+| ![Registration Form](screenshots/Screenshot 2026-10-08 205836.png) | ![Registration Success](screenshots/Screenshot 2026-10-08 205813.png) | ![MariaDB Records](screenshots/Screenshot 2026-10-08 211213.png) |
 
 ## Architecture
 
