@@ -5,12 +5,20 @@ A responsive registration form built with **HTML, CSS, JavaScript, and PHP**, de
 The application collects user details, displays a registration-success page, and stores submitted records in a MariaDB database.
 
 ## Project Preview
+## 📸 Project Preview
 
-Add your screenshots to a folder named `screenshots/` in this repository, then update the image paths below.
+### Registration Form
 
-| Registration Form | Registration Success | Database Records |
-|---|---|---|
-| ![Registration Form](screenshots/Screenshot 2026-10-08 205836.png) | ![Registration Success](screenshots/Screenshot 2026-10-08 205813.png) | ![MariaDB Records](screenshots/Screenshot 2026-10-08 211213.png) |
+![Registration Form](screenshots/Screenshot%202026-10-08%20205836.png)
+
+### Registration Success
+
+![Registration Success](screenshots/Screenshot%202026-10-08%20205813.png)
+
+### MariaDB Records
+
+![MariaDB Records](screenshots/Screenshot%202026-10-08%20211213.png)
+
 
 ## Architecture
 
