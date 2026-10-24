@@ -19,29 +19,51 @@ The application collects user details, displays a registration-success page, and
 
 ![MariaDB Records](screenshots/Screenshot%202026-10-08%20211213.png)
 
-
-## Architecture
+## 🏗️ Architecture
 
 ```text
-                         User / Web Browser
-                                  |
-                                HTTP/HTTPS
-                                  |
-                           Nginx Web Server
-                           on AWS EC2
-                                  |
-                         PHP Application Logic
-                                  |
-                       Amazon RDS for MariaDB
-                         (Database Service)
+              +----------------------+
+              |   User / Web Browser |
+              +----------------------+
+                         |
+                    HTTP / HTTPS
+                         |
+                         v
+              +----------------------+
+              |   Nginx Web Server   |
+              |      AWS EC2         |
+              +----------------------+
+                         |
+                         v
+              +----------------------+
+              | PHP Application      |
+              | Logic                |
+              +----------------------+
+                         |
+                         v
+              +----------------------+
+              |   MariaDB Database   |
+              |   Hosted on EC2      |
+              +----------------------+
 
-                  Amazon EBS → EC2 block storage
+              +----------------------+
+              |     Amazon EBS       |
+              | Persistent Block     |
+              | Storage for EC2      |
+              +----------------------+
+                         |
+                 Attached to EC2
 ```
 
-**Request flow:** The user submits the registration form → Nginx serves the application and passes PHP requests to the configured PHP runtime → PHP processes the submitted data → the application stores the record in MariaDB → the result is shown to the user.
+### Request Flow
 
-> **Note:** Amazon EBS provides block storage attached to the EC2 instance. MariaDB is shown as a separate database service; if you installed MariaDB directly on EC2 instead of using Amazon RDS, update this description and the architecture accordingly.
+1. **User:** Accesses the registration form through a web browser.
+2. **Nginx:** Receives HTTP/HTTPS requests on the AWS EC2 instance.
+3. **PHP:** Processes the submitted registration details.
+4. **MariaDB:** Stores the registration records on the EC2 instance.
+5. **Amazon EBS:** Provides persistent block storage attached to EC2, when configured for application or database files.
 
+**Note:** Amazon EBS is a storage service, not a database service. MariaDB runs directly on EC2 in this architecture.
 ## Features
 
 - Responsive registration form interface
@@ -100,36 +122,6 @@ The project was deployed on AWS using the following high-level workflow:
 
 Exact installation commands vary by Linux distribution and by whether MariaDB is hosted on Amazon RDS or directly on EC2.
 
-## Example Project Structure
-
-```text
-php-registration-form/
-├── index.php                 # Registration form
-├── process.php               # Form processing and database insert
-├── success.php               # Registration confirmation page
-├── css/
-│   └── style.css              # Page styling
-├── js/
-│   └── script.js              # Client-side interactions/validation
-├── screenshots/
-│   ├── registration-form.png
-│   ├── registration-success.png
-│   └── database-records.png
-└── README.md
-```
-
-Your actual filenames may differ. Adjust this tree to match your repository.
-
-## Security Considerations
-
-- Keep database credentials outside publicly accessible source files where possible.
-- Never commit passwords, private keys, `.env` files, or other secrets to GitHub.
-- Use prepared statements (for example, PDO or MySQLi) for database queries.
-- Validate input on the server side; browser-side validation alone is not sufficient.
-- Restrict database access to the application server or approved network sources.
-- Allow SSH only from trusted IP addresses and use HTTPS for production traffic.
-- Avoid displaying detailed PHP errors to public visitors in production.
-
 ## What I Learned
 
 - Deploying a PHP web application on an AWS EC2 Linux instance
@@ -139,20 +131,6 @@ Your actual filenames may differ. Adjust this tree to match your repository.
 - Testing form submissions and verifying database records
 - Applying basic cloud networking and deployment practices
 
-## Future Improvements
-
-- Add stronger server-side validation and duplicate-email checks
-- Hash passwords if account authentication is introduced
-- Configure HTTPS with a valid TLS certificate
-- Add logging, monitoring, backups, and database access controls
-- Automate deployment using a CI/CD pipeline
-
 ## Author
 
 **Aditya Annasaheb Shelar**
-
-Cloud Computing | AWS | Linux | PHP | Web Application Deployment
-
----
-
-*This project was developed for learning and demonstrating web application deployment on AWS. Do not use it with real personal information until appropriate security, privacy, and production controls are implemented.*
